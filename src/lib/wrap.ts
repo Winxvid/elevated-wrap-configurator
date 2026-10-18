@@ -83,8 +83,8 @@ const sources: Record<string, { base: string; mask: string }> = {
   "audi-sq8-2024": { base: "/renders/audi-sq8-2024-factory.jpg", mask: "/renders/audi-sq8-2024-mask.png?v=1" },
   "audi-sq8-sportback-e-tron-2024": { base: "/renders/audi-sq8-sportback-e-tron-2024-factory.jpg", mask: "/renders/audi-sq8-sportback-e-tron-2024-mask.png?v=1" },
   "audi-sq8-e-tron-2024": { base: "/renders/audi-sq8-e-tron-2024-factory.jpg", mask: "/renders/audi-sq8-e-tron-2024-mask.png?v=1" },
-  "avatr-11-2025": { base: "/renders/avatr-11-2025-factory.jpg", mask: "/renders/avatr-11-2025-mask.png?v=1" },
-  "avatr-12-2025": { base: "/renders/avatr-12-2025-factory.jpg", mask: "/renders/avatr-12-2025-mask.png?v=1" },
+  "avatr-11-2025": { base: "/renders/avatr-11-2025-factory.jpg", mask: "/renders/avatr-11-2025-mask.png?v=4" },
+  "avatr-12-2025": { base: "/renders/avatr-12-2025-factory.jpg", mask: "/renders/avatr-12-2025-mask.png?v=4" },
 };
 
 export function plateBase(carId: string) {
