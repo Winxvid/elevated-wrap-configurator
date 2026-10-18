@@ -9,3 +9,5 @@ dist/
 .env.production
 .DS_Store
 *.log
+.tanstack/
+screenshots/
