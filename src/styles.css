@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #f4f4f2;
+  --color-surface: #ffffff;
+  --color-surface-2: #f3f1ec;
+  --color-fg: #171717;
+  --color-muted: #6b6b6b;
+  --color-brass: #171717;
+  --color-brass-ink: #fafafa;
+  --color-line: #e4e4e4;
+  --color-well: #e6e6e6;
+  --color-danger: #c24132;
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --radius-card: 0.9rem;
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  html,
+  body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+  }
+
+  body {
+    min-height: 100dvh;
+  }
+}
+
+html[data-theme="dark"] {
+  --color-bg: #0c0c0e;
+  --color-surface: #16161a;
+  --color-surface-2: #212128;
+  --color-fg: #f3efe6;
+  --color-muted: #9b958a;
+  --color-brass: #f3efe6;
+  --color-brass-ink: #171717;
+  --color-line: #2e2e36;
+  --color-well: #1c1c20;
+  --color-danger: #e15b4a;
+  color-scheme: dark;
+}
+
+.logo-on-dark {
+  display: none;
+}
+
+html[data-theme="dark"] .logo-ink {
+  display: none;
+}
+
+html[data-theme="dark"] .logo-on-dark {
+  display: block;
+}
+
+@keyframes stage-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.stage-photo {
+  animation: stage-in 220ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

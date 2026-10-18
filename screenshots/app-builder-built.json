@@ -1,0 +1,38 @@
+{
+  "url": "http://127.0.0.1:8081/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "SHEEN — See the wrap before you commit",
+      "hasCanvas": false,
+      "bodyTextLen": 1154,
+      "bodyTextHash": "9966cbbc5de50f066c47c5888dce7bedb2d4474947bab6f1d710b35066d8cc7f",
+      "bodyTextPrefix": "SHEEN Vinyl wrap studio 2024 Ford Mustang GT Change car Builds C",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "SHEEN — See the wrap before you commit",
+      "hasCanvas": false,
+      "bodyTextLen": 1123,
+      "bodyTextHash": "4b0c4c8fc7cbd944f82600c8b3fa29e28374b9aaab78769c1ee22eac805ce0ea",
+      "bodyTextPrefix": "SHEEN 2024 Ford Mustang GT Change car Search finishes All 3M Ave",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-built.json",
+  "divergesFromBaseline": false,
+  "baselineReasons": []
+}

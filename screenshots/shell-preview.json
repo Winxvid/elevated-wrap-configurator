@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "SHEEN — See the wrap before you commit",
+      "hasCanvas": false,
+      "bodyTextLen": 356,
+      "bodyTextHash": "bbcd4621be7e6437d2a19f018f7a1eec13fd18e76f2edb1f887f085ebad47cb7",
+      "bodyTextPrefix": "2024 Ford Mustang GT vinyl wrap visualizer SHEEN Brand Ford Tesl",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/shell-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "SHEEN — See the wrap before you commit",
+      "hasCanvas": false,
+      "bodyTextLen": 356,
+      "bodyTextHash": "bbcd4621be7e6437d2a19f018f7a1eec13fd18e76f2edb1f887f085ebad47cb7",
+      "bodyTextPrefix": "2024 Ford Mustang GT vinyl wrap visualizer SHEEN Brand Ford Tesl",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/shell-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/shell-preview.json"
+}
