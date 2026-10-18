@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant land (@media (orientation: landscape) and (max-width: 1023px));
+
 @theme {
   --color-bg: #f4f4f2;
   --color-surface: #ffffff;
@@ -29,8 +31,46 @@
     font-family: var(--font-sans);
   }
 
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
   body {
+    min-height: 100vh;
     min-height: 100dvh;
+    overscroll-behavior: none;
+  }
+
+  button,
+  [role="button"],
+  a,
+  select,
+  label {
+    touch-action: manipulation;
+  }
+}
+
+.app-shell {
+  height: 100vh;
+  height: 100dvh;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* iOS Safari zooms the page when a focused field is under 16px. */
+@media (pointer: coarse) {
+  input,
+  select,
+  textarea {
+    font-size: 16px;
   }
 }
 

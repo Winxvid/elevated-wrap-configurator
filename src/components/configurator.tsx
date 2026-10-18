@@ -180,30 +180,30 @@ export function Configurator() {
   }
 
   return (
-    <div className="flex h-dvh flex-col overflow-hidden bg-surface text-fg">
+    <div className="app-shell flex flex-col overflow-hidden bg-surface pr-[env(safe-area-inset-right)] pl-[env(safe-area-inset-left)] text-fg">
       <h1 className="sr-only">
         {car.year} {car.brand} {car.model} vinyl wrap visualizer
       </h1>
-      <header className="grid h-14 shrink-0 grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-2 border-b border-line px-3 sm:gap-3 sm:px-4">
+      <header className="grid h-[calc(3.5rem+env(safe-area-inset-top))] shrink-0 grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-2 border-b border-line px-3 pt-[env(safe-area-inset-top)] sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] sm:gap-3 sm:px-4 land:h-[calc(3rem+env(safe-area-inset-top))] lg:h-[calc(3.5rem+env(safe-area-inset-top))]">
         <button
           type="button"
           onClick={openPicker}
           className="inline-flex h-10 min-w-0 max-w-full items-center justify-self-start gap-2 rounded-full border border-line bg-surface px-3 text-sm"
         >
-          <CarIcon className="size-4 shrink-0" aria-hidden="true" />
+          <CarIcon className="hidden size-4 shrink-0 sm:block" aria-hidden="true" />
           <span className="truncate font-medium">{car.model}</span>
-          <span className="shrink-0 text-muted">{car.year}</span>
+          <span className="hidden shrink-0 text-muted min-[360px]:inline">{car.year}</span>
           <ChevronDown className="size-4 shrink-0 text-muted" aria-hidden="true" />
         </button>
         <a href="/" className="shrink-0 justify-self-center" aria-label="Elevated Auto Wraps">
-          <img src="/brand/elevated-logo-ink.png" alt="Elevated Auto Wraps" className="logo-ink h-9 w-auto sm:h-10" />
-          <img src="/brand/elevated-logo.png" alt="" aria-hidden="true" className="logo-on-dark h-9 w-auto sm:h-10" />
+          <img src="/brand/elevated-logo-ink.png" alt="Elevated Auto Wraps" className="logo-ink h-7 w-auto min-[360px]:h-9 sm:h-10 land:h-8 lg:h-10" />
+          <img src="/brand/elevated-logo.png" alt="" aria-hidden="true" className="logo-on-dark h-7 w-auto min-[360px]:h-9 sm:h-10 land:h-8 lg:h-10" />
         </a>
         <div className="flex shrink-0 items-center justify-self-end">
           <button
             type="button"
             onClick={toggleTheme}
-            className="inline-flex h-10 items-center gap-2 rounded-full px-2 text-sm text-muted"
+            className="inline-flex size-10 items-center justify-center gap-2 rounded-full text-sm text-muted md:w-auto md:px-2"
             aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
           >
             {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
@@ -229,8 +229,8 @@ export function Configurator() {
         </div>
       </header>
 
-      <div className="flex min-h-0 flex-1 flex-col lg:flex-row">
-        <section className="relative aspect-video shrink-0 overflow-hidden bg-well lg:aspect-auto lg:min-h-0 lg:flex-1">
+      <div className="flex min-h-0 flex-1 flex-col land:flex-row lg:flex-row">
+        <section className="relative aspect-video shrink-0 overflow-hidden bg-well land:aspect-auto land:min-h-0 land:flex-1 lg:aspect-auto lg:min-h-0 lg:flex-1">
           <div className={cn("absolute inset-0 flex", compare && "gap-1")}>
             <div className="relative min-w-0 flex-1">
               <StageFrame car={car} film={film} />
@@ -244,13 +244,13 @@ export function Configurator() {
         </section>
 
         {expanded ? null : (
-          <aside className="flex min-h-0 flex-1 flex-col border-line bg-surface lg:w-[22.5rem] lg:flex-none lg:border-l" aria-label="Customize your car">
-            <div className="shrink-0 px-4 pt-4">
+          <aside className="flex min-h-0 flex-1 flex-col border-line bg-surface land:w-[19rem] land:flex-none land:border-l lg:w-[22.5rem] lg:flex-none lg:border-l" aria-label="Customize your car">
+            <div className="sr-only shrink-0 px-4 pt-4 lg:not-sr-only">
               <h2 className="text-lg font-semibold">Customize your car</h2>
             </div>
 
-            <div className="flex min-h-0 flex-1 flex-col">
-                <div className="shrink-0 space-y-3 px-4 pt-3">
+            <div className="flex min-h-0 flex-1 flex-col overflow-y-auto overscroll-contain lg:overflow-hidden">
+                <div className="sticky top-0 z-10 shrink-0 space-y-3 bg-surface px-4 pt-3 pb-3 lg:static">
                   <label className="flex h-11 items-center gap-2 rounded-xl border border-line px-3">
                     <Search className="size-4 shrink-0 text-muted" aria-hidden="true" />
                     <input
@@ -261,7 +261,7 @@ export function Configurator() {
                       className="w-full bg-transparent text-sm outline-none placeholder:text-muted"
                     />
                   </label>
-                  <div className="flex gap-1 overflow-x-auto" aria-label="Manufacturers">
+                  <div className="no-scrollbar flex gap-1 overflow-x-auto" aria-label="Manufacturers">
                     {filmBrands.map((item) => (
                       <button
                         key={item}
@@ -277,6 +277,8 @@ export function Configurator() {
                       </button>
                     ))}
                   </div>
+                </div>
+                <div className="shrink-0 space-y-3 px-4">
                   <div className="grid grid-cols-2 gap-2">
                     <FilterSelect label="Finish type" value={family} onChange={setFamily} options={families} />
                     <FilterSelect label="Color family" value={hue} onChange={setHue} options={hues} />
@@ -285,11 +287,11 @@ export function Configurator() {
                     {visibleFilms.length} finishes
                   </p>
                 </div>
-                <div className="min-h-0 flex-1 overflow-y-auto px-4 pb-3">
+                <div className="shrink-0 px-4 pb-3 lg:min-h-0 lg:flex-1 lg:shrink lg:overflow-y-auto">
                   {visibleFilms.length === 0 ? (
                     <p className="py-6 text-sm text-muted">No film matches that search.</p>
                   ) : (
-                    <div className="grid grid-cols-3 gap-3">
+                    <div className="grid grid-cols-[repeat(auto-fill,minmax(4.75rem,1fr))] gap-3 lg:grid-cols-3">
                       {visibleFilms.map((item) => {
                         const selected = item.id === filmId;
                         return (
@@ -318,8 +320,8 @@ export function Configurator() {
                 </div>
             </div>
 
-            <div className="shrink-0 border-t border-line px-4 py-3">
-              <div className="flex items-center gap-3">
+            <div className="flex shrink-0 items-center gap-3 border-t border-line px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] lg:block">
+              <div className="flex min-w-0 flex-1 items-center gap-3">
                 <span className="size-10 shrink-0 rounded-full border border-line" style={swatchStyle(film)} aria-hidden="true" />
                 <div className="min-w-0" aria-live="polite">
                   <p className="truncate text-sm font-semibold">{film.name}</p>
@@ -333,7 +335,7 @@ export function Configurator() {
                 type="button"
                 disabled={!price}
                 onClick={() => setQuoteOpen(true)}
-                className="mt-3 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-brass text-sm font-medium text-brass-ink disabled:opacity-40"
+                className="flex h-12 shrink-0 items-center justify-center gap-2 rounded-xl bg-brass px-4 text-sm font-medium text-brass-ink disabled:opacity-40 lg:mt-3 lg:w-full"
               >
                 <MessageSquare className="size-4" />
                 {price ? "Price this wrap" : "Factory paint"}
@@ -538,7 +540,7 @@ function CarPicker({
                   className="w-full bg-transparent text-sm outline-none"
                 />
               </label>
-              <ul className="max-h-64 space-y-1 overflow-y-auto">
+              <ul className="max-h-44 space-y-1 overflow-y-auto overscroll-contain md:max-h-64">
                 {brands.map((item) => {
                   const selected = item === brandName;
                   return (
@@ -572,7 +574,7 @@ function CarPicker({
                   className="w-full bg-transparent text-sm outline-none"
                 />
               </label>
-              <ul className="max-h-64 space-y-1 overflow-y-auto">
+              <ul className="max-h-44 space-y-1 overflow-y-auto overscroll-contain md:max-h-64">
                 {models.map((item) => {
                   const selected = item === modelName;
                   return (
@@ -596,7 +598,7 @@ function CarPicker({
             </div>
             <div>
               <p className="mb-2 text-sm font-medium">3 Year</p>
-              <ul className="max-h-64 space-y-2 overflow-y-auto">
+              <ul className="max-h-44 space-y-2 overflow-y-auto overscroll-contain md:max-h-64">
                 {years.map((item) => {
                   const selected = item.id === car.id;
                   return (
