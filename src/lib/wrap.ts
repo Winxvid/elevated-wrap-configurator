@@ -10,7 +10,8 @@ type Plate = {
 
 const plates = new Map<string, Promise<Plate>>();
 
-const sources: Record<string, { base: string; mask: string }> = {
+// `soft` tames the dark factory paint on these photos so wraps keep their form instead of blowing out to white.
+const sources: Record<string, { base: string; mask: string; soft?: boolean }> = {
   "ford-mustang-gt-2024": { base: "/renders/mustang-base.webp", mask: "/renders/mustang-mask.png" },
   "tesla-model-3-2024": { base: "/renders/model3-factory.jpg", mask: "/renders/model3-mask.png?v=5" },
   "porsche-911-carrera-2024": { base: "/renders/carrera-factory.jpg", mask: "/renders/carrera-mask.png?v=5" },
@@ -85,8 +86,8 @@ const sources: Record<string, { base: string; mask: string }> = {
   "audi-sq8-e-tron-2024": { base: "/renders/audi-sq8-e-tron-2024-factory.jpg", mask: "/renders/audi-sq8-e-tron-2024-mask.png?v=1" },
   "avatr-11-2025": { base: "/renders/avatr-11-2025-factory.jpg", mask: "/renders/avatr-11-2025-mask.png?v=4" },
   "avatr-12-2025": { base: "/renders/avatr-12-2025-factory.jpg", mask: "/renders/avatr-12-2025-mask.png?v=4" },
-  "bentley-bentayga-hybrid-2023": { base: "/renders/bentley-bentayga-hybrid-2023-factory.jpg", mask: "/renders/bentley-bentayga-hybrid-2023-mask.png?v=2" },
-  "bentley-flying-spur-hybrid-2023": { base: "/renders/bentley-flying-spur-hybrid-2023-factory.jpg", mask: "/renders/bentley-flying-spur-hybrid-2023-mask.png?v=2" },
+  "bentley-bentayga-hybrid-2023": { base: "/renders/bentley-bentayga-hybrid-2023-factory.jpg", mask: "/renders/bentley-bentayga-hybrid-2023-mask.png?v=2", soft: true },
+  "bentley-flying-spur-hybrid-2023": { base: "/renders/bentley-flying-spur-hybrid-2023-factory.jpg", mask: "/renders/bentley-flying-spur-hybrid-2023-mask.png?v=2", soft: true },
 };
 
 export function plateBase(carId: string) {
@@ -111,12 +112,12 @@ export function loadCarPlate(carId: string) {
   if (existing) return existing;
   const source = sources[carId];
   if (!source) return Promise.reject(new Error(`No plate for ${carId}`));
-  const pending = buildPlate(source.base, source.mask);
+  const pending = buildPlate(source.base, source.mask, source.soft);
   plates.set(carId, pending);
   return pending;
 }
 
-async function buildPlate(baseSrc: string, maskSrc: string): Promise<Plate> {
+async function buildPlate(baseSrc: string, maskSrc: string, soft = false): Promise<Plate> {
   const [baseImage, maskImage] = await Promise.all([loadImage(baseSrc), loadImage(maskSrc)]);
   const width = baseImage.naturalWidth;
   const height = baseImage.naturalHeight;
@@ -146,7 +147,10 @@ async function buildPlate(baseSrc: string, maskSrc: string): Promise<Plate> {
     }
   }
   const avg = n ? sum / n : 158;
-  for (let i = 0; i < count; i++) shade[i] = Math.min(2.4, shade[i] / avg);
+  for (let i = 0; i < count; i++) {
+    const ratio = Math.min(2.4, shade[i] / avg);
+    shade[i] = soft ? (ratio <= 1 ? ratio ** 0.8 : 1 + (ratio - 1) * 0.5) : ratio;
+  }
   return { width, height, base, shade, alpha };
 }
 
