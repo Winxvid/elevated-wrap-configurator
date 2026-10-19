@@ -85,6 +85,8 @@ const sources: Record<string, { base: string; mask: string }> = {
   "audi-sq8-e-tron-2024": { base: "/renders/audi-sq8-e-tron-2024-factory.jpg", mask: "/renders/audi-sq8-e-tron-2024-mask.png?v=1" },
   "avatr-11-2025": { base: "/renders/avatr-11-2025-factory.jpg", mask: "/renders/avatr-11-2025-mask.png?v=4" },
   "avatr-12-2025": { base: "/renders/avatr-12-2025-factory.jpg", mask: "/renders/avatr-12-2025-mask.png?v=4" },
+  "bentley-bentayga-hybrid-2023": { base: "/renders/bentley-bentayga-hybrid-2023-factory.jpg", mask: "/renders/bentley-bentayga-hybrid-2023-mask.png?v=2" },
+  "bentley-flying-spur-hybrid-2023": { base: "/renders/bentley-flying-spur-hybrid-2023-factory.jpg", mask: "/renders/bentley-flying-spur-hybrid-2023-mask.png?v=2" },
 };
 
 export function plateBase(carId: string) {
